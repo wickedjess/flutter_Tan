@@ -1,118 +1,120 @@
 import 'package:flutter/material.dart';
 
-void main(){
-  dartFundamentals();
-  runApp(MyApp());
-}
-
-void dartFundamentals(){
-  String name = 'Tony Stark';
-  int age = 20;
-  String year  = "BSIT - 3";
-  bool ifStudent = true;
-
-  //List
-  List<String> subjects = ["CC103", "WS101", "IPT101"];
-
-  //Map
-  Map<String, double> grades = {"CC103": 1.5, "WS101": 1.4, "IPT101": 1.9};
-
-  //For Loop
-  for(int i = 1; i <= 5; i++){
-    print("This is For Loop: $i" );
-  }
-
-  //While Loop
-  int x = 1;
-  while(x <= 5){
-    print("This is While Loop: $x");
-    x++;
-  }
-
-  //Final and Const
-  final school = "Buangan College";
-  const pi = 3.1416;
-
-  //This is to print the outputs of the variables
-  print("Name: $name, Age: $age, Year and Course: $year, Is Student: $ifStudent");
-  print("Subjects: $subjects");
-  print("Grades: $grades");
-  print("School: $school, Pi: $pi");
-}
-
-                              //END OF PART 2 
-
-
-//This is the UI Implementation
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Prelim App',
-      home: HomePage(),
+      title: 'Activity UI',
+      theme: ThemeData(primarySwatch: Colors.amber),
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-// Home Page with Static UI
-class HomePage extends StatelessWidget {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Prelim App"),
-        backgroundColor: Colors.grey[800],
-      ),
-      backgroundColor: Colors.grey[300],
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Steps to Set Up Flutter & Dart:",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 10),
-              Text(
-                '''1. Install Flutter SDK in the website
-                \n2. Install Dart SDK and extract in dev folder
-                \n3. Use VS Code to make app
-                \n4. Run flutter doctor
-                \n5. Create project: flutter create project_name using Terminal
-                \n6. Open folder
-                \n7. Run: flutter run''',
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Flutter - framework.\n Dart - programming language.",
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ],
+        title: Text('Activity'),
+        backgroundColor: Colors.amber,
+        actions: [
+          Tooltip(
+            message: 'Search',
+            child: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[700], 
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
-        currentIndex: 0, 
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+          Tooltip(
+            message: 'Notification',
+            child: IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {},
+            ),
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Jemuel and Friends',
+              style: TextStyle(color: Colors.blue, fontSize: 18),
+            ),
+            SizedBox(height: 16),
+
+            Image.network(
+              'https://i.pinimg.com/736x/79/a3/16/79a3168cf52edca304ff32db46e0f888.jpg',
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Tooltip(
+                  message: 'Edit',
+                  child: ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.edit),
+                    label: Text('Edit'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                  ),
+                ),
+                Tooltip(
+                  message: 'Delete',
+                  child: ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Icon(Icons.delete),
+                    label: Text('Delete'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.amber,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              tooltip: 'Profile',
+              icon: Icon(Icons.person),
+              onPressed: () {},
+            ),
+            IconButton(
+              tooltip: 'Home',
+              icon: Icon(Icons.home),
+              onPressed: () {},
+            ),
+            IconButton(
+              tooltip: 'Settings',
+              icon: Icon(Icons.settings),
+              onPressed: () {},
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/538269978_1464829371494410_827100871132952165_n.jpg',
+                height: 30,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
